@@ -39,6 +39,7 @@ namespace COMP2007_S2016_MidTerm_100092199
 
                     TodoNameTextBox.Text = updatedTodo.TodoName;
                     TodoNotesTextBox.Text = updatedTodo.TodoNotes;
+                    Completed.Checked = Convert.ToBoolean(updatedTodo.Completed);
                 }
             }
         }
@@ -88,6 +89,27 @@ namespace COMP2007_S2016_MidTerm_100092199
                 // Redirect back to the updated Todos page
                 Response.Redirect("~/todoList.aspx");
             }
+        }
+
+        protected void Completed_CheckedChanged(object sender, EventArgs e)
+        {
+            using (TodoConnection db = new TodoConnection())
+            {
+                Todo newTodo = new Todo();
+
+                if (Completed.Checked == true)
+                {
+                    newTodo.Completed = true;
+                }
+                else
+                {
+                    newTodo.Completed = false;
+                }
+            }
+
+            // refresh the grid
+            this.GetTodo();
+
         }
     }
 }

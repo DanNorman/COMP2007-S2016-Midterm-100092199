@@ -17,14 +17,16 @@
                         <asp:ListItem Text="All" Value="10000" />
                     </asp:DropDownList>
                 </div>
-                <asp:GridView runat="server" ID="ToDoGridView" CssClass="table table-bordered table-striped table-hover" AutoGenerateColumns="false" DataKeyNames="TodoID" OnRowDeleting="ToDoGridView_RowDeleting" AllowPaging="true" PageSize="3"
-                    OnPageIndexChanging="ToDoGridView_PageIndexChanging" AllowSorting="true"
-                    OnSorting="ToDoGridView_Sorting" OnRowDataBound="ToDoGridView_RowDataBound" >
+                <asp:GridView runat="server" ID="TodoGridView" CssClass="table table-bordered table-striped table-hover" 
+                    AutoGenerateColumns="false" DataKeyNames="TodoID" OnRowDeleting="TodoGridView_RowDeleting" AllowPaging="true" PageSize="3"
+                    OnPageIndexChanging="TodoGridView_PageIndexChanging" AllowSorting="true"
+                    OnSorting="TodoGridView_Sorting" OnRowDataBound="TodoGridView_RowDataBound" 
+                    PagerStyle-CssClass="pagination-ys" >
                     <Columns>
                         <asp:BoundField DataField="TodoName" HeaderText=" Todo " Visible="true" />
                         <asp:BoundField DataField="TodoNotes" HeaderText=" Notes " Visible="true" />
-                        <asp:CheckBoxField DataField="Completed" HeaderText="Completed" Visible="true" />
-                        <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'></i> Edit" NavigateUrl="~/TodoDetails.aspx" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server" DataNavigateUrlFields="TodoID" />
+                        <asp:TemplateField><ItemTemplate><asp:CheckBox runat="server" AutoPostBack="true" ID="Completed" OnCheckedChanged="Completed_CheckedChanged" /></ItemTemplate></asp:TemplateField>          
+                        <asp:HyperLinkField HeaderText="Edit" Text="<i class='fa fa-pencil-square-o fa-lg'></i> Edit" NavigateUrl="~/TodoDetails.aspx.cs" ControlStyle-CssClass="btn btn-primary btn-sm" runat="server" DataNavigateUrlFields="TodoID" DataNavigateUrlFormatString="TodoDetails.aspx?TodoID={0}" />
                         <asp:CommandField HeaderText="Delete" DeleteText="<i class='fa fa-trash'></i> Delete" ShowDeleteButton="true" ButtonType="Link" ControlStyle-CssClass="btn btn-danger btn-sm" />
                     </Columns>
                 </asp:GridView>

@@ -16,9 +16,13 @@
                             <label class="control-label" for="PhoneNumberTextBox">Todo Notes:</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TodoNotesTextBox" placeholder="Todo Notes" required="true" TabIndex="0"></asp:TextBox>
                         </div>
+                        <div class="form-group">
+                            <asp:CheckBox runat="server" ID="Completed" Text="Completed" OnCheckedChanged="Completed_CheckedChanged" />
+                        </div>
                         <div class="text-right">
                             <asp:Button Text="Cancel" ID="CancelButton" runat="server" CssClass="btn btn-warning" OnClick="CancelButton_Click" UseSubmitBehavior="false" CausesValidation="false" TabIndex="0" />
                             <asp:Button Text="Save" ID="SaveButton" runat="server" CssClass="btn btn-primary" OnClick="SaveButton_Click" TabIndex="0" />
+                            
                         </div>
                     </div>
                 </div>
